@@ -2,33 +2,41 @@
 
 angular.module('starter.controllers', [])
 
-.controller('MapCtrl', function ($scope) {
+.controller('MapCtrl', function (APP_CONTEXT, AppLog, AppPostion, $scope) {
 
-    $scope.myLocation = {
-        lat: 51.7579957,
-        lng: -1.2354382,
+    var defaultPosition = AppPostion.getDefaultPosition();
+
+    angular.extend($scope, {
+        defaults: {
+            tileLayer: 'http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/carnav.day.grey/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}',
+            maxZoom: 18,
+            minZoom: 16,
+        }
+    });
+
+    $scope.center = {
+        lat: defaultPosition.lat,
+        lng: defaultPosition.lng,
         zoom: 18
     };
 
-    $scope.markers = {
-        main_marker: {
-            lat: 51.7579957,
-            lng: -1.2354382,
-            focus: true,
-            //message: "Hey, drag me if you want",
-            title: "Marker",
-            draggable: true,
-            label: {
-                message: "Hey, drag me if you want",
-                options: {
-                    noHide: true
-                }
+    $scope.myPosition = AppPostion.getPosition();
+    $scope.markers = {};
+
+    AppPostion.callback = function (position) {
+        $scope.markers = {
+            main_marker: {
+                lat: position.lat,
+                lng: position.lng
             }
-        }
+        };
     };
+
 })
 
-.controller('DashCtrl', function ($scope) {})
+.controller('DashCtrl', function (APP_CONTEXT, AppLog, $scope) {
+    $scope.context = APP_CONTEXT;
+})
 
 .controller('ChatsCtrl', function ($scope, Chats) {
     // With the new view caching in Ionic, Controllers are only called

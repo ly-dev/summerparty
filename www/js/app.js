@@ -10,24 +10,16 @@ angular.module('starter', [
 
 // global constant
 .constant('APP_CONFIG', {
-    /*REPLACE*/
-    DEBUG: true /*REPLACE*/ ,
-    XDEBUG_KEY: 'XDEBUG_SESSION_START',
-    XDEBUG_VALUE: 'ECLIPSE_DBGP',
-    ALLOW_ORIGIN: '*',
-    HOME_URL: '/app/home',
-    /*REPLACE*/
-    SERVER_URL: 'http://lyionic:8100' /*REPLACE*/ ,
-    ENDPOINT_URI: '/api/v1',
-    /*REPLACE*/
-    APP_VERSION: 'x.x.x' /*REPLACE*/
+    /*REPLACE*/ DEBUG: true /*REPLACE*/ ,
+    /*REPLACE*/ FIREBASE_URL: 'https://summerparty.firebaseIO.com' /*REPLACE*/ ,
+    /*REPLACE*/ APP_VERSION: '0.1.x' /*REPLACE*/
 })
 
 .value('APP_CONTEXT', {
     env: 'web'
 })
 
-.run(function ($ionicPlatform, AppLog, APP_CONTEXT) {
+.run(function (APP_CONTEXT, AppLog, $rootScope, $ionicPlatform) {
     AppLog.debug('Run app');
 
     $ionicPlatform.ready(function () {
