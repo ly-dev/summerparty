@@ -6,13 +6,40 @@ angular.module('starter.controllers', [])
 
     var defaultPosition = AppPostion.getDefaultPosition();
 
-    angular.extend($scope, {
-        defaults: {
-            tileLayer: 'http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/carnav.day.grey/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}',
-            maxZoom: 18,
-            minZoom: 16,
+    var tilesList = {
+        openstreetmap: {
+            url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            options: {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
+        },
+        opencyclemap: {
+            url: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+            options: {
+                attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+            }
+        },
+        mapbox_outdoors: {
+            name: 'Mapbox Outdoors',
+            url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+            type: 'xyz',
+            options: {
+                apikey: 'pk.eyJ1IjoiYnVmYW51dm9scyIsImEiOiJLSURpX0pnIn0.2_9NrLz1U9bpwMQBhVk97Q',
+                mapid: 'bufanuvols.lia3no0m'
+            }
+        },
+        mapbox_wheat: {
+            name: 'Mapbox Wheat Paste',
+            url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+            type: 'xyz',
+            options: {
+                apikey: 'pk.eyJ1IjoiYnVmYW51dm9scyIsImEiOiJLSURpX0pnIn0.2_9NrLz1U9bpwMQBhVk97Q',
+                mapid: 'bufanuvols.lia35jfp'
+            }
         }
-    });
+    };
+
+    $scope.tiles = tilesList['mapbox_wheat'];
 
     $scope.center = {
         lat: defaultPosition.lat,

@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- Content Security Policy tag: https://github.com/apache/cordova-plugin-whitelist -->
+    <!-- TODO: change to: script-src 'self' 'unsafe-inline'; connect-src 'self'; -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; media-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline'; connect-src *">
     <title>Summer Party</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
